@@ -6,15 +6,36 @@ import model.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static model.User.isEmailUnique;
 
 public class Main {
     public static void main(String[] args) {
+        List<User> userList = new ArrayList<>();
+
         User user1 = new User("Ipek", "Cil", "ipek@gmail.com", "ppp1", "5397868622", true);
+        if (isEmailUnique(user1.getEmail(), userList)) {
+            userList.add(user1);
+            System.out.println("The user record has been created successfully.");
+        } else {
+            System.out.println("This email address has been used before.");
+        }
         User user2 = new User("Onur", "Cil", "onur@gmail.com", "ppp2", "5397868623", true);
-        User user3 = new User("Seher", "Cil", "seher@gmail.com", "ppp3", "5397868624", true);
-        User user4 = new User("Arlo", "Cil", "arlo@gmail.com", "ppp4", "5397868625", true);
+        if (isEmailUnique(user2.getEmail(), userList)) {
+            userList.add(user2);
+            System.out.println("The user record has been created successfully.");
+        } else {
+            System.out.println("This email address has been used before.");
+        }
+        User user3 = new User("Cem", "Dırman", "cemdrman@gmail.com", "ppp3", "5397868624", true);
+        if (isEmailUnique(user3.getEmail(), userList)) {
+            userList.add(user3);
+            System.out.println("The user record has been created successfully.");
+        } else {
+            System.out.println("This email address has been used before.");
+        }
 
 
         Bank bank1 = new Bank();
@@ -24,125 +45,216 @@ public class Main {
         Bank bank3 = new Bank();
         bank3.setName("AkBank");
 
-        ConsumerLoan consumerLoan1 = new ConsumerLoan(new BigDecimal("20000"), 10, 3.21, LoanType.CONSUMER_LOAN);
+        Product consumerLoan1 = new ConsumerLoan(new BigDecimal("20000"), 10, 3.21, LoanType.CONSUMER_LOAN);
         consumerLoan1.setBank(bank1);
-        ConsumerLoan consumerLoan2 = new ConsumerLoan(new BigDecimal("30000"), 16, 2.89, LoanType.CONSUMER_LOAN);
+        Product consumerLoan2 = new ConsumerLoan(new BigDecimal("30000"), 16, 2.89, LoanType.CONSUMER_LOAN);
         consumerLoan2.setBank(bank1);
-        ConsumerLoan consumerLoan3 = new ConsumerLoan(new BigDecimal("20000"), 8, 3.05, LoanType.CONSUMER_LOAN);
+        Product consumerLoan3 = new ConsumerLoan(new BigDecimal("20000"), 8, 3.05, LoanType.CONSUMER_LOAN);
         consumerLoan3.setBank(bank2);
-        ConsumerLoan consumerLoan4 = new ConsumerLoan(new BigDecimal("30000"), 18, 3.21, LoanType.CONSUMER_LOAN);
+        Product consumerLoan4 = new ConsumerLoan(new BigDecimal("30000"), 18, 3.21, LoanType.CONSUMER_LOAN);
         consumerLoan4.setBank(bank2);
-        ConsumerLoan consumerLoan5 = new ConsumerLoan(new BigDecimal("20000"), 12, 2.89, LoanType.CONSUMER_LOAN);
+        Product consumerLoan5 = new ConsumerLoan(new BigDecimal("20000"), 12, 2.89, LoanType.CONSUMER_LOAN);
         consumerLoan5.setBank(bank3);
-        ConsumerLoan consumerLoan6 = new ConsumerLoan(new BigDecimal("30000"), 24, 3.05, LoanType.CONSUMER_LOAN);
+        Product consumerLoan6 = new ConsumerLoan(new BigDecimal("30000"), 24, 3.05, LoanType.CONSUMER_LOAN);
         consumerLoan6.setBank(bank3);
+        System.out.println(consumerLoan3.getBank().getName());
 
 
-        HouseLoan houseLoan1 = new HouseLoan(new BigDecimal("800000"), 96, 2.04, LoanType.HOUSE_LOAN);
+        Product houseLoan1 = new HouseLoan(new BigDecimal("800000"), 96, 2.04, LoanType.HOUSE_LOAN);
         houseLoan1.setBank(bank1);
-        HouseLoan houseLoan2 = new HouseLoan(new BigDecimal("1000000"), 120, 1.99, LoanType.HOUSE_LOAN);
+        Product houseLoan2 = new HouseLoan(new BigDecimal("1000000"), 120, 1.99, LoanType.HOUSE_LOAN);
         houseLoan2.setBank(bank1);
-        HouseLoan houseLoan3 = new HouseLoan(new BigDecimal("800000"), 120, 1.99, LoanType.HOUSE_LOAN);
+        Product houseLoan3 = new HouseLoan(new BigDecimal("800000"), 120, 1.99, LoanType.HOUSE_LOAN);
         houseLoan3.setBank(bank2);
-        HouseLoan houseLoan4 = new HouseLoan(new BigDecimal("1000000"), 180, 1.76, LoanType.HOUSE_LOAN);
+        Product houseLoan4 = new HouseLoan(new BigDecimal("1000000"), 180, 1.76, LoanType.HOUSE_LOAN);
         houseLoan4.setBank(bank2);
-        HouseLoan houseLoan5 = new HouseLoan(new BigDecimal("800000"), 120, 2.01, LoanType.HOUSE_LOAN);
+        Product houseLoan5 = new HouseLoan(new BigDecimal("800000"), 120, 2.01, LoanType.HOUSE_LOAN);
         houseLoan5.setBank(bank3);
-        HouseLoan houseLoan6 = new HouseLoan(new BigDecimal("1000000"), 180, 1.98, LoanType.HOUSE_LOAN);
+        Product houseLoan6 = new HouseLoan(new BigDecimal("1000000"), 180, 1.98, LoanType.HOUSE_LOAN);
         houseLoan6.setBank(bank3);
 
-       /* List<ConsumerLoan> bank1ConsumerLoanList = new ArrayList<>();
-        bank1ConsumerLoanList.add(consumerLoan1);
-        bank1ConsumerLoanList.add(consumerLoan2);
-        List<ConsumerLoan> bank2ConsumerLoanList = List.of(consumerLoan3, consumerLoan4);
-        List<ConsumerLoan> bank3ConsumerLoanList = List.of(consumerLoan5, consumerLoan6);
-
-        List<HouseLoan> bank1HouseLoanList = List.of(houseLoan1, houseLoan2);
-        List<HouseLoan> bank2HouseLoanList = List.of(houseLoan3, houseLoan4);
-        List<HouseLoan> bank3HouseLoanList = List.of(houseLoan5, houseLoan6);
-
-        List<List<Loan>> bank1AllLoans = new ArrayList<>();
-        List<List<Loan>> bank2AllLoans = new ArrayList<>();
-        List<List<Loan>> bank3AllLoans = new ArrayList<>();*/
-
-        /*bank1AllLoans.add(bank1HouseLoanList);
-        bank1AllLoans.add(bank1ConsumerLoanList);
-        bank2AllLoans.add(bank2HouseLoanList);
-        bank2AllLoans.add(bank2ConsumerLoanList);
-        bank3AllLoans.add(bank3HouseLoanList);
-        bank3AllLoans.add(bank3ConsumerLoanList);*/
-
-        /*bank1.setBankLoans(bank1AllLoans);
-        bank2.setBankLoans(bank2AllLoans);
-        bank3.setBankLoans(bank3AllLoans);*/
-
-        CreditCard creditCard1 = new CreditCard("Bonus", new BigDecimal("150"));
+        Product creditCard1 = new CreditCard("Bonus", new BigDecimal("150"), LoanType.CREDIT_CARD);
         creditCard1.setBank(bank2);
-        CreditCard creditCard2 = new CreditCard("Bonus Teen", new BigDecimal("0"));
+        Product creditCard2 = new CreditCard("Bonus Teen", new BigDecimal("0"), LoanType.CREDIT_CARD);
         creditCard2.setBank(bank2);
-        CreditCard creditCard3 = new CreditCard("CardFinans", new BigDecimal("100"));
+        Product creditCard3 = new CreditCard("CardFinans", new BigDecimal("100"), LoanType.CREDIT_CARD);
         creditCard3.setBank(bank1);
-        CreditCard creditCard4 = new CreditCard("CardFinans Trendyol", new BigDecimal("0"));
-        creditCard4.setBank(bank1);
-        CreditCard creditCard5 = new CreditCard("Axess", new BigDecimal("0"));
+        Product creditCard5 = new CreditCard("Axess", new BigDecimal("0"), LoanType.CREDIT_CARD);
         creditCard5.setBank(bank3);
-        CreditCard creditCard6 = new CreditCard("Axess Retired", new BigDecimal("100"));
+        Product creditCard6 = new CreditCard("Axess Retired", new BigDecimal("100"), LoanType.CREDIT_CARD);
         creditCard6.setBank(bank3);
 
-        List<CreditCard> bank1CreditCards = List.of(creditCard3, creditCard4);
-        List<CreditCard> bank2CreditCards = List.of(creditCard1, creditCard2);
-        List<CreditCard> bank3CreditCards = List.of(creditCard5, creditCard6);
+        List<Product> bank1AllProducts = List.of(consumerLoan1, consumerLoan2, houseLoan1, houseLoan2, creditCard3);
+        List<Product> bank2AllProducts = List.of(consumerLoan3, consumerLoan4, houseLoan3, houseLoan4, creditCard1, creditCard2);
+        List<Product> bank3AllProducts = List.of(consumerLoan5, consumerLoan6, houseLoan5, houseLoan6, creditCard5, creditCard6);
+        bank1.setBankProducts(bank1AllProducts);
+        bank2.setBankProducts(bank2AllProducts);
+        bank3.setBankProducts(bank3AllProducts);
 
-        bank1.setBankCreditCard(bank1CreditCards);
-        bank2.setBankCreditCard(bank2CreditCards);
-        bank3.setBankCreditCard(bank3CreditCards);
+        //List <Product> allProducts = List.of(consumerLoan1,consumerLoan2,consumerLoan3,consumerLoan4,consumerLoan5,consumerLoan6,houseLoan1,houseLoan2,houseLoan3,houseLoan4,houseLoan5,houseLoan6,creditCard1,creditCard2,creditCard3,creditCard4,creditCard5,creditCard6);
 
         Campaign campaign1 = new Campaign("Bonus BigCampaign", "+5 installments possible", LocalDate.of(2024, 8, 30), SectorType.MARKET);
-        campaign1.setCreditCard(creditCard1);
         Campaign campaign2 = new Campaign("BonusTeen BigCampaign", "+5 installments possible and fee-free", LocalDate.of(2024, 8, 30), SectorType.MARKET);
-        campaign2.setCreditCard(creditCard2);
-        Campaign campaign3 = new Campaign("CardFinans Campaign", "+3 installments possible for hotel reservations for vacations", LocalDate.of(2024, 6, 15), SectorType.TRAVELS);
-        campaign3.setCreditCard(creditCard3);
+        Campaign campaign3 = new Campaign("CardFinans Campaign", "+3 installments possible for hotel reservations", LocalDate.of(2024, 6, 15), SectorType.TRAVELS);
         Campaign campaign4 = new Campaign("CardFinans BigCampaign for Trendyol ", "Up to +5 installments without interest", LocalDate.of(2024, 5, 30), SectorType.OTHERS);
-        campaign4.setCreditCard(creditCard4);
         Campaign campaign5 = new Campaign("Axess Campaign", "Fee-free and cash advance opportunity", LocalDate.of(2024, 8, 30), SectorType.MARKET);
-        campaign5.setCreditCard(creditCard5);
         Campaign campaign6 = new Campaign("Axess Campaign for Retirees", "Interest-free cash advance", LocalDate.of(2024, 12, 30), SectorType.MARKET);
-        campaign6.setCreditCard(creditCard6);
-
-        /*creditCard1.setCampaign(campaign1);
-        creditCard2.setCampaign(campaign2);
-        creditCard3.setCampaign(campaign3);
-        creditCard4.setCampaign(campaign4);
-        creditCard5.setCampaign(campaign5);
-        creditCard6.setCampaign(campaign6);*/
-
-        Application application1 = new Application(user1, LocalDateTime.now(), ApplicationStatus.INITIAL, consumerLoan1);
-        Application application2 = new Application(user1, LocalDateTime.now(), ApplicationStatus.INITIAL, creditCard4);
-        Application application3 = new Application(user2, LocalDateTime.now(), ApplicationStatus.INITIAL, consumerLoan4);
-        Application application4 = new Application(user3, LocalDateTime.now(), ApplicationStatus.INITIAL, houseLoan3);
-        Application application5 = new Application(user3, LocalDateTime.now(), ApplicationStatus.INITIAL, creditCard6);
-        Application application6 = new Application(user2, LocalDateTime.now(), ApplicationStatus.INITIAL, creditCard1);
-        Application application7 = new Application(user2, LocalDateTime.now(), ApplicationStatus.INITIAL, creditCard5);
-
-        /*List<Application> user1Applications = List.of(application1, application2);
-        List<Application> user2Applications = List.of(application3, application6, application7);
-        List<Application> user3Applications = List.of(application4, application5);
-
-        user1.setApplicationList(user1Applications);
-        user2.setApplicationList(user2Applications);
-        user3.setApplicationList(user3Applications);*/
+        Campaign campaign7 = new Campaign("Bonus Card Campaign", "Fee-free cash advance", LocalDate.of(2024, 12, 30), SectorType.OTHERS);
+        Campaign campaign8 = new Campaign("Bonus Card Campaign", "15% discount on cinema tickets", LocalDate.of(2024, 11, 30), SectorType.OTHERS);
 
 
+        campaign1.setProduct(creditCard1);
+        campaign2.setProduct(creditCard2);
+        campaign3.setProduct(creditCard3);
+        campaign4.setProduct(creditCard3);
+        campaign5.setProduct(creditCard5);
+        campaign6.setProduct(creditCard6);
+        campaign7.setProduct(creditCard1);
+        campaign8.setProduct(creditCard1);
 
+        List<Campaign> allCampaigns = List.of(campaign1, campaign2, campaign3, campaign4, campaign5, campaign6, campaign7, campaign8);
 
+        Application application1 = new Application(user1, LocalDateTime.of(2023, 12, 20, 13, 40), ApplicationStatus.INITIAL, consumerLoan1);
+        Application application2 = new Application(user1, LocalDateTime.of(2024, 2, 25, 16, 45), ApplicationStatus.INITIAL, creditCard3);
+        Application application3 = new Application(user2, LocalDateTime.of(2024, 2, 15, 17, 55), ApplicationStatus.INITIAL, consumerLoan4);
+        Application application4 = new Application(user3, LocalDateTime.of(2024, 3, 1, 22, 34), ApplicationStatus.INITIAL, houseLoan3);
+        Application application5 = new Application(user3, LocalDateTime.of(2024, 3, 9, 21, 21), ApplicationStatus.INITIAL, creditCard6);
+        Application application6 = new Application(user2, LocalDateTime.of(2023, 12, 13, 13, 14), ApplicationStatus.INITIAL, creditCard1);
+        Application application7 = new Application(user2, LocalDateTime.of(2024, 1, 3, 12, 30), ApplicationStatus.INITIAL, creditCard5);
 
+        List<Application> userApplications = List.of(application1, application2, application3, application4, application5, application6, application7);
+        User mostApplicantUser = getMostApplicationUser(userApplications);
 
-        /*bankLoanList.forEach(loan -> {
-            System.out.println(loan.getBank().getName()+ " -> " + loan.getInterestRate().toString());
-        });*/
+        System.out.println("Name of the user who has most application count: " + mostApplicantUser.getName());
 
+        Map<User, BigDecimal> usersAndLoanApplicationsMap = getUsersAndLoanApplications(userApplications);
+        Map<User, BigDecimal> maxLoanApplicationAndUserMap = getUserWithMaxLoanApplication(usersAndLoanApplicationsMap);
+        maxLoanApplicationAndUserMap.forEach((key, value) -> {
+            System.out.println("Name of the user has max amount loan application is : " + key.getName() + " , and loan application amount is: " + value);
+        });
+
+        List<Application> lastMonthApplications = getLastMonthApplications(userApplications);
+
+        for (Application application : lastMonthApplications) {
+            System.out.println("User: " + application.getUser().getName() +
+                    ", Date: " + application.getLocalDateTime() +
+                    ", Status: " + application.getApplicationStatus() +
+                    ", Product: " + application.getProduct().getLoanType());
+        }
+
+        List<String> sortedCreditCards = sortCreditCardsByCampaignCount(allCampaigns);
+        System.out.println("Credit Cards and Campaign counts:");
+        for (String creditCard : sortedCreditCards) {
+            System.out.println(creditCard);
+        }
+
+        List<Application> applicationOfGivenUser = getApplicationsOfUserByEmail("cemdrman@gmail.com", userApplications );
+        for (Application application : applicationOfGivenUser) {
+            if(!application.getProduct().getLoanType().equals(LoanType.CREDIT_CARD)) {
+                System.out.println("Date: " + application.getLocalDateTime() +
+                        ", Status: " + application.getApplicationStatus() +
+                        ", Product: " + application.getProduct().getLoanType());
+            } else{
+                System.out.println("Date: " + application.getLocalDateTime() +
+                        ", Status: " + application.getApplicationStatus() +
+                        ", Product: " + application.getProduct().getName());
+            }
+
+        }
+    }
+
+    //  Question 3: Method to find user who has most application count
+    private static User getMostApplicationUser(List<Application> allApplications) {
+        Map<User, Integer> applicationCountMap = new HashMap<>();
+
+        for (Application application : allApplications) {
+            User user = application.getUser();
+            applicationCountMap.put(user, applicationCountMap.getOrDefault(user, 0) + 1);
+        }
+
+        User mostApplicationUser = null;
+        int maxApplications = 0;
+
+        for (Map.Entry<User, Integer> entry : applicationCountMap.entrySet()) {
+            if (entry.getValue() > maxApplications) {
+                maxApplications = entry.getValue();
+                mostApplicationUser = entry.getKey();
+            }
+        }
+
+        return mostApplicationUser;
 
     }
+
+    //Question4
+    private static Map<User, BigDecimal> getUsersAndLoanApplications(List<Application> allApplications) {
+        Map<User, BigDecimal> loanAmountAndUserMap = new HashMap<>();
+        List<Application> filteredList = allApplications.stream().filter(f -> !f.getProduct().getLoanType().equals(LoanType.CREDIT_CARD)).toList();
+        for (Application application : filteredList) {
+            User user = application.getUser();
+            Product product = application.getProduct();
+            loanAmountAndUserMap.put(user, product.getAmount());
+        }
+        return loanAmountAndUserMap;
+    }
+
+    private static Map<User, BigDecimal> getUserWithMaxLoanApplication(Map<User, BigDecimal> usersAndLoans) {
+        User userWithMaxAmountLoanDemand = null;
+        BigDecimal highestLoanAmount = BigDecimal.ZERO;
+        Map<User, BigDecimal> userWithMaxAmountLoanDemandMap = new HashMap<>();
+        for (Map.Entry<User, BigDecimal> entry : usersAndLoans.entrySet()) {
+            if (entry.getValue().compareTo(highestLoanAmount) > 0) {
+                highestLoanAmount = entry.getValue();
+                userWithMaxAmountLoanDemand = entry.getKey();
+            }
+        }
+        userWithMaxAmountLoanDemandMap.put(userWithMaxAmountLoanDemand, highestLoanAmount);
+        return userWithMaxAmountLoanDemandMap;
+
+    }
+
+    //Question5
+    private static List<Application> getLastMonthApplications(List<Application> allApplications) {
+        LocalDateTime oneMonthAgo = LocalDateTime.now().minusMonths(1);
+        List<Application> lastMonthApplications = new ArrayList<>();
+
+        for (Application application : allApplications) {
+            if (application.getLocalDateTime().isAfter(oneMonthAgo)) {
+                lastMonthApplications.add(application);
+            }
+        }
+
+        return lastMonthApplications;
+    }
+
+    //Question6
+    private static List<String> sortCreditCardsByCampaignCount(List<Campaign> allCampaigns) {
+
+        Map<String, Long> creditCardCampaignCount = allCampaigns.stream()
+                .collect(Collectors.groupingBy(campaign -> campaign.getProduct().getName(),
+                        Collectors.counting()));
+
+        List<String> sortedCreditCards = creditCardCampaignCount.entrySet().stream()
+                .sorted(Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()))
+                .map(entry -> entry.getKey() + " - Campaign count " + entry.getValue())
+                .collect(Collectors.toList());
+
+        return sortedCreditCards;
+    }
+    //Question7
+    private static List<Application> getApplicationsOfUserByEmail(String email, List<Application> allApplications) {
+        List<Application> applicationsOfUserList = new ArrayList<>();
+        for (Application application : allApplications) {
+            if (email.equals(application.getUser().getEmail())) {
+                applicationsOfUserList.add(application);
+            }
+        }
+        return applicationsOfUserList;
+    }
 }
+
+
+
+
+
 

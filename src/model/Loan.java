@@ -1,17 +1,17 @@
 package model;
 
+import enums.LoanType;
+
 import java.math.BigDecimal;
 import java.util.List;
 
-public abstract class Loan implements Product{
+public abstract class Loan implements Product {
+    private LoanType loanType;
     private BigDecimal amount;
     private Integer installment;
     private Double interestRate;
-    private List<Campaign> campaignListLoan;
     private Bank bank;
-    public Loan(){
-
-    }
+    private String name;
 
     public Loan(BigDecimal amount, Integer installment, Double interestRate) {
         this.amount = amount;
@@ -19,6 +19,25 @@ public abstract class Loan implements Product{
         this.interestRate = interestRate;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public LoanType getLoanType() {
+        return loanType;
+    }
+
+    public void setLoanType(LoanType loanType) {
+        this.loanType = loanType;
+    }
+
+    @Override
     public BigDecimal getAmount() {
         return amount;
     }
@@ -43,21 +62,14 @@ public abstract class Loan implements Product{
         this.interestRate = interestRate;
     }
 
-    public List<Campaign> getCampaignListLoan() {
-        return campaignListLoan;
-    }
-
-    public void setCampaignListLoan(List<Campaign> campaignListLoan) {
-        this.campaignListLoan = campaignListLoan;
-    }
-
+    @Override
     public Bank getBank() {
         return bank;
     }
 
+    @Override
     public void setBank(Bank bank) {
         this.bank = bank;
     }
-
 
 }

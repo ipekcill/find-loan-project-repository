@@ -12,7 +12,7 @@ public class Application {
     private Product product;
 
 
-    public Application( User user, LocalDateTime localDateTime, ApplicationStatus applicationStatus, Product product) {
+    public Application(User user, LocalDateTime localDateTime, ApplicationStatus applicationStatus, Product product) {
         this.user = user;
         this.localDateTime = localDateTime;
         this.applicationStatus = applicationStatus;
@@ -51,4 +51,12 @@ public class Application {
         this.product = product;
     }
 
+    @Override
+    public String toString() {
+        return "Application{" +
+                "user=" + user +
+                ", localDateTime=" + localDateTime +
+                ", applicationStatus=" + applicationStatus +
+                '}';
+    }
 }

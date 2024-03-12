@@ -1,20 +1,28 @@
 package model;
 
+import enums.LoanType;
+
 import java.math.BigDecimal;
 import java.util.List;
 
 public class CreditCard implements Product {
     private String name;
     private BigDecimal fee;
-    private Campaign campaign;
+
+    private BigDecimal limit;
+    private LoanType loanType;
 
     private Bank bank;
+    private List<Campaign> campaignList;
 
-    public CreditCard(String name, BigDecimal fee) {
+    public CreditCard(String name, BigDecimal fee, LoanType loanType) {
         this.name = name;
         this.fee = fee;
+        this.loanType = loanType;
     }
 
+
+    @Override
     public String getName() {
         return name;
     }
@@ -31,21 +39,38 @@ public class CreditCard implements Product {
         this.fee = fee;
     }
 
-    public Campaign getCampaign() {
-        return campaign;
+    @Override
+    public BigDecimal getAmount() {
+        return limit;
     }
 
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
+    @Override
+    public LoanType getLoanType() {
+        return loanType;
     }
 
+    @Override
+    public void setBank(Bank bank) {
+    }
+    @Override
     public Bank getBank() {
         return bank;
     }
 
-    public void setBank(Bank bank) {
-        this.bank = bank;
+    public List<Campaign> getCampaignList() {
+        return campaignList;
     }
 
+    public void setCampaignList(List<Campaign> campaignList) {
+        this.campaignList = campaignList;
+    }
 
+    @Override
+    public String toString() {
+        return "CreditCard{" +
+                "fee=" + fee +
+                ", bank=" + bank +
+                ", campaignList=" + campaignList +
+                '}';
+    }
 }

@@ -16,7 +16,13 @@ public class HouseLoan extends Loan {
     private LoanType houseLoan = LoanType.HOUSE_LOAN;
 
 
+    public LoanType getLoanType() {
+        return loanType;
+    }
 
+    public void setLoanType(LoanType loanType) {
+        this.loanType = loanType;
+    }
 
     public LoanType getHouseLoan() {
         return houseLoan;
@@ -25,4 +31,5 @@ public class HouseLoan extends Loan {
     public void setHouseLoan(LoanType houseLoan) {
         this.houseLoan = houseLoan;
     }
+
 }

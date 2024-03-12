@@ -10,14 +10,11 @@ public class Campaign {
     private LocalDate dueDate;
 
     private SectorType sectorType;
-
-    private CreditCard creditCard;
-
+    private Product product;
     public Campaign(String title, String content, LocalDate dueDate, SectorType sectorType) {
         this.title = title;
         this.content = content;
         this.dueDate = dueDate;
-
         this.sectorType = sectorType;
     }
 
@@ -53,13 +50,21 @@ public class Campaign {
         this.sectorType = sectorType;
     }
 
-    public CreditCard getCreditCard() {
-        return creditCard;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setCreditCard(CreditCard creditCard) {
-        this.creditCard = creditCard;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-
+    @Override
+    public String toString() {
+        return "Campaign{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", dueDate=" + dueDate +
+                ", sectorType=" + sectorType +
+                '}';
+    }
 }

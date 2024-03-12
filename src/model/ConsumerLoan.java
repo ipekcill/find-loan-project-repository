@@ -8,11 +8,11 @@ import java.util.List;
 public class ConsumerLoan extends Loan {
     private LoanType loanType;
     private List<Integer> instalmentOptions;
+
     public ConsumerLoan(BigDecimal amount, Integer installment, Double interestRate, LoanType loanType) {
         super(amount, installment, interestRate);
         this.loanType = loanType;
     }
-
 
 
     public List<Integer> getInstalmentOptions() {
@@ -30,4 +30,5 @@ public class ConsumerLoan extends Loan {
     public void setLoanType(LoanType loanType) {
         this.loanType = loanType;
     }
+
 }
