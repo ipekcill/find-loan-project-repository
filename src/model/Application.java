@@ -5,7 +5,6 @@ import enums.ApplicationStatus;
 import java.time.LocalDateTime;
 
 public class Application {
-
     private User user;
     private LocalDateTime localDateTime;
     private ApplicationStatus applicationStatus;

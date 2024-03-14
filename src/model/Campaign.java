@@ -3,14 +3,14 @@ package model;
 import enums.SectorType;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Campaign {
     private String title;
     private String content;
     private LocalDate dueDate;
-
     private SectorType sectorType;
-    private Product product;
+    private List<Product> creditCards;
     public Campaign(String title, String content, LocalDate dueDate, SectorType sectorType) {
         this.title = title;
         this.content = content;
@@ -50,12 +50,13 @@ public class Campaign {
         this.sectorType = sectorType;
     }
 
-    public Product getProduct() {
-        return product;
+
+    public List<Product> getCreditCards() {
+        return creditCards;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setCreditCards(List<Product> creditCards) {
+        this.creditCards = creditCards;
     }
 
     @Override

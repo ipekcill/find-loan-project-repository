@@ -1,20 +1,16 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Bank {   //Singleton design pattern
     private static Bank instance;
     private String name;
-    private List<Product> bankProducts;
 
-    private Bank() {
-        this.bankProducts = new ArrayList<>();
+    public Bank(String name) {
+        this.name = name;
     }
 
-    public static Bank getInstance() {
+    public static Bank getInstance(String bankName) {
         if (instance == null) {
-            instance = new Bank();
+            instance = new Bank(bankName);
         }
         return instance;
     }
@@ -27,19 +23,10 @@ public class Bank {   //Singleton design pattern
         this.name = name;
     }
 
-    public List<Product> getBankProducts() {
-        return bankProducts;
-    }
-
-    public void setBankProducts(List<Product> bankProducts) {
-        this.bankProducts = bankProducts;
-    }
-
     @Override
     public String toString() {
         return "Bank{" +
                 "name='" + name + '\'' +
-                ", bankProducts=" + bankProducts +
                 '}';
     }
 }

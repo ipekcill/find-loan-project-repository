@@ -2,8 +2,6 @@ package model;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class User {
     private String name;
@@ -12,7 +10,6 @@ public class User {
     private String password;
     private String phoneNumber;
     private boolean isActive;
-    // private List<Application> applicationList;
 
 
     public User(String name, String surname, String email, String password, String phoneNumber, boolean isActive) {
@@ -22,12 +19,6 @@ public class User {
         this.password = hashPassword(password);
         this.phoneNumber = phoneNumber;
         this.isActive = isActive;
-    }
-
-
-    public static boolean isEmailUnique(String email, List<User> userList) {
-        return userList.stream()
-                .noneMatch(user -> user.getEmail().equals(email));
     }
 
     private String hashPassword(String password) {
@@ -98,5 +89,13 @@ public class User {
         isActive = active;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }

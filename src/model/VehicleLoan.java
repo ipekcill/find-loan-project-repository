@@ -1,54 +1,33 @@
 package model;
 
 import enums.LoanType;
-import enums.VehicleStatuType;
+import enums.VehicleStatusType;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class VehicleLoan extends Loan {
-    private LoanType vehicleLoan = LoanType.VEHICLE_LOAN;
-    private List<Integer> instalmentOptions;
-    private VehicleStatuType vehicleStatuType;
-    private LoanType loanType;
+    private String title;
+    private VehicleStatusType vehicleStatusType;
 
-    public VehicleLoan(BigDecimal amount, Integer installment, Double interestRate) {
-        super(amount, installment, interestRate);
+    public VehicleLoan(String title, VehicleStatusType vehicleStatusType, BigDecimal amount, Integer installment, Double interestRate, LoanType loanType) {
+        super(amount, installment, interestRate, loanType);
+        this.title = title;
+        this.vehicleStatusType = vehicleStatusType;
     }
 
-    public List<Integer> getInstalmentOptions() {
-        return instalmentOptions;
+    public String getTitle() {
+        return title;
     }
 
-    public void setInstalmentOptions(List<Integer> instalmentOptions) {
-        this.instalmentOptions = instalmentOptions;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @Override
-    public LoanType getLoanType() {
-        return loanType;
+    public VehicleStatusType getVehicleStatusType() {
+        return vehicleStatusType;
     }
 
-    @Override
-    public void setLoanType(LoanType loanType) {
-        this.loanType = loanType;
+    public void setVehicleStatusType(VehicleStatusType vehicleStatusType) {
+        this.vehicleStatusType = vehicleStatusType;
     }
-
-    public VehicleStatuType getVehicleStatuType() {
-        return vehicleStatuType;
-    }
-
-    public void setVehicleStatuType(VehicleStatuType vehicleStatuType) {
-        this.vehicleStatuType = vehicleStatuType;
-    }
-
-    public LoanType getVehicleLoan() {
-        return vehicleLoan;
-    }
-
-    public void setVehicleLoan(LoanType vehicleLoan) {
-        this.vehicleLoan = vehicleLoan;
-    }
-
-
 }

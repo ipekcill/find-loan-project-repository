@@ -8,19 +8,18 @@ import java.util.List;
 public class CreditCard implements Product {
     private String name;
     private BigDecimal fee;
-
     private BigDecimal limit;
-    private LoanType loanType;
-
     private Bank bank;
-    private List<Campaign> campaignList;
+    private List<Campaign> campaigns;
+    private final LoanType loanType;
 
-    public CreditCard(String name, BigDecimal fee, LoanType loanType) {
+
+    public CreditCard(String name, BigDecimal fee, BigDecimal limit) {
         this.name = name;
         this.fee = fee;
-        this.loanType = loanType;
+        this.limit = limit;
+        this.loanType = LoanType.CREDIT_CARD;
     }
-
 
     @Override
     public String getName() {
@@ -39,6 +38,19 @@ public class CreditCard implements Product {
         this.fee = fee;
     }
 
+    public BigDecimal getLimit() {
+        return limit;
+    }
+
+    public void setLimit(BigDecimal limit) {
+        this.limit = limit;
+    }
+
+    @Override
+    public Bank getBank() {
+        return bank;
+    }
+
     @Override
     public BigDecimal getAmount() {
         return limit;
@@ -46,23 +58,20 @@ public class CreditCard implements Product {
 
     @Override
     public LoanType getLoanType() {
-        return loanType;
+        return this.loanType;
     }
 
     @Override
     public void setBank(Bank bank) {
-    }
-    @Override
-    public Bank getBank() {
-        return bank;
+        this.bank = bank;
     }
 
-    public List<Campaign> getCampaignList() {
-        return campaignList;
+    public List<Campaign> getCampaigns() {
+        return campaigns;
     }
 
-    public void setCampaignList(List<Campaign> campaignList) {
-        this.campaignList = campaignList;
+    public void setCampaigns(List<Campaign> campaigns) {
+        this.campaigns = campaigns;
     }
 
     @Override
@@ -70,7 +79,7 @@ public class CreditCard implements Product {
         return "CreditCard{" +
                 "fee=" + fee +
                 ", bank=" + bank +
-                ", campaignList=" + campaignList +
+                ", campaigns=" + campaigns +
                 '}';
     }
 }

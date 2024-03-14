@@ -3,32 +3,20 @@ package model;
 import enums.LoanType;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class ConsumerLoan extends Loan {
-    private LoanType loanType;
-    private List<Integer> instalmentOptions;
+    private String title;
 
-    public ConsumerLoan(BigDecimal amount, Integer installment, Double interestRate, LoanType loanType) {
-        super(amount, installment, interestRate);
-        this.loanType = loanType;
+    public ConsumerLoan(String title, BigDecimal amount, Integer installment, Double interestRate, LoanType loanType) {
+        super(amount, installment, interestRate, loanType);
+        this.title = title;
     }
 
-
-    public List<Integer> getInstalmentOptions() {
-        return instalmentOptions;
+    public String getTitle() {
+        return title;
     }
 
-    public void setInstalmentOptions(List<Integer> instalmentOptions) {
-        this.instalmentOptions = instalmentOptions;
+    public void setTitle(String title) {
+        this.title = title;
     }
-
-    public LoanType getLoanType() {
-        return loanType;
-    }
-
-    public void setLoanType(LoanType loanType) {
-        this.loanType = loanType;
-    }
-
 }

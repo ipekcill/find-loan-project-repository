@@ -3,7 +3,6 @@ package model;
 import enums.LoanType;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public abstract class Loan implements Product {
     private LoanType loanType;
@@ -13,10 +12,11 @@ public abstract class Loan implements Product {
     private Bank bank;
     private String name;
 
-    public Loan(BigDecimal amount, Integer installment, Double interestRate) {
+    public Loan(BigDecimal amount, Integer installment, Double interestRate, LoanType loanType) {
         this.amount = amount;
         this.installment = installment;
         this.interestRate = interestRate;
+        this.loanType = loanType;
     }
 
     @Override
