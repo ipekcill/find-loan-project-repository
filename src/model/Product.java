@@ -14,5 +14,4 @@ public interface Product {
     Bank getBank();
     String getName();
 
-
 }

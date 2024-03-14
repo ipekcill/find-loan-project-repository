@@ -1,13 +1,24 @@
 package model;
 
-import enums.LoanType;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class Bank {
+public class Bank {   //Singleton design pattern
+    private static Bank instance;
     private String name;
     private List<Product> bankProducts;
+
+    private Bank() {
+        this.bankProducts = new ArrayList<>();
+    }
+
+    public static Bank getInstance() {
+        if (instance == null) {
+            instance = new Bank();
+        }
+        return instance;
+    }
+
     public String getName() {
         return name;
     }

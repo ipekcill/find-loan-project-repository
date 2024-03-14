@@ -36,13 +36,15 @@ public class Main {
         } else {
             System.out.println("This email address has been used before.");
         }
+        System.out.println("------------------------------------------------------------------------------------------------------------");
 
-
-        Bank bank1 = new Bank();
+        Bank bank1 = Bank.getInstance();
         bank1.setName("FinansBank");
-        Bank bank2 = new Bank();
+
+        Bank bank2 = Bank.getInstance();
         bank2.setName("GarantiBank");
-        Bank bank3 = new Bank();
+
+        Bank bank3 = Bank.getInstance();
         bank3.setName("AkBank");
 
         Product consumerLoan1 = new ConsumerLoan(new BigDecimal("20000"), 10, 3.21, LoanType.CONSUMER_LOAN);
@@ -57,8 +59,6 @@ public class Main {
         consumerLoan5.setBank(bank3);
         Product consumerLoan6 = new ConsumerLoan(new BigDecimal("30000"), 24, 3.05, LoanType.CONSUMER_LOAN);
         consumerLoan6.setBank(bank3);
-        System.out.println(consumerLoan3.getBank().getName());
-
 
         Product houseLoan1 = new HouseLoan(new BigDecimal("800000"), 96, 2.04, LoanType.HOUSE_LOAN);
         houseLoan1.setBank(bank1);
@@ -126,14 +126,17 @@ public class Main {
         User mostApplicantUser = getMostApplicationUser(userApplications);
 
         System.out.println("Name of the user who has most application count: " + mostApplicantUser.getName());
+        System.out.println("------------------------------------------------------------------------------------------------------------");
 
         Map<User, BigDecimal> usersAndLoanApplicationsMap = getUsersAndLoanApplications(userApplications);
         Map<User, BigDecimal> maxLoanApplicationAndUserMap = getUserWithMaxLoanApplication(usersAndLoanApplicationsMap);
         maxLoanApplicationAndUserMap.forEach((key, value) -> {
             System.out.println("Name of the user has max amount loan application is : " + key.getName() + " , and loan application amount is: " + value);
         });
+        System.out.println("------------------------------------------------------------------------------------------------------------");
 
         List<Application> lastMonthApplications = getLastMonthApplications(userApplications);
+        System.out.println("Applications within the last 1 month");
 
         for (Application application : lastMonthApplications) {
             System.out.println("User: " + application.getUser().getName() +
@@ -141,20 +144,23 @@ public class Main {
                     ", Status: " + application.getApplicationStatus() +
                     ", Product: " + application.getProduct().getLoanType());
         }
+        System.out.println("------------------------------------------------------------------------------------------------------------");
 
         List<String> sortedCreditCards = sortCreditCardsByCampaignCount(allCampaigns);
         System.out.println("Credit Cards and Campaign counts:");
         for (String creditCard : sortedCreditCards) {
             System.out.println(creditCard);
         }
+        System.out.println("------------------------------------------------------------------------------------------------------------");
+        System.out.println("Applications of the user who has given email");
 
-        List<Application> applicationOfGivenUser = getApplicationsOfUserByEmail("cemdrman@gmail.com", userApplications );
+        List<Application> applicationOfGivenUser = getApplicationsOfUserByEmail("cemdrman@gmail.com", userApplications);
         for (Application application : applicationOfGivenUser) {
-            if(!application.getProduct().getLoanType().equals(LoanType.CREDIT_CARD)) {
+            if (!application.getProduct().getLoanType().equals(LoanType.CREDIT_CARD)) {
                 System.out.println("Date: " + application.getLocalDateTime() +
                         ", Status: " + application.getApplicationStatus() +
                         ", Product: " + application.getProduct().getLoanType());
-            } else{
+            } else {
                 System.out.println("Date: " + application.getLocalDateTime() +
                         ", Status: " + application.getApplicationStatus() +
                         ", Product: " + application.getProduct().getName());
@@ -241,6 +247,7 @@ public class Main {
 
         return sortedCreditCards;
     }
+
     //Question7
     private static List<Application> getApplicationsOfUserByEmail(String email, List<Application> allApplications) {
         List<Application> applicationsOfUserList = new ArrayList<>();
